@@ -3,4 +3,4 @@
     <span class="spacer"></span> 
     <a mat-flat-button color="primary" href="todo/add">Todo追加</a>
 </mat-toolbar>
-<todo-card></todo-card>
+<todo-card *ngFor="let todo of todoList" [item]="todo"></todo-card>
