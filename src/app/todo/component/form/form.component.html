@@ -1,0 +1,31 @@
+<mat-card class="margin-a-20">
+    <mat-card-content>
+        <p>
+            <mat-form-field appearance="outline">
+              <mat-label>タイトル</mat-label>
+              <input matInput placeholder="何かタイトル">
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="outline">
+                <mat-label>カテゴリ</mat-label>
+                <input matInput placeholder="カテゴリ※後でSelectBoxに変更する">
+              </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="outline">
+              <mat-label>本文</mat-label>
+              <textarea matInput placeholder="何か本文"></textarea>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="outline">
+                <mat-label>ステータス</mat-label>
+                <input matInput placeholder="ステータス※後でSelectBoxに変更する">
+              </mat-form-field>
+        </p>
+    </mat-card-content>
+    <mat-card-footer>
+        <a mat-flat-button color="primary" href="todo/add" class="margin-a-20">登録</a>
+    </mat-card-footer>
+</mat-card>
