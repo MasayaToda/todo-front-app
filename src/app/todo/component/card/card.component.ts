@@ -21,4 +21,11 @@ export class CardComponent {
   getBrEscape(text:string){
     return text.replace(/\\r\\n/g, '\r\n');
   }
+  getLocalTime(timeStr?:string){
+    if(typeof timeStr === 'string'){
+      return new Date(timeStr).toLocaleDateString() +' '+ new Date(timeStr).toLocaleTimeString()
+    }else{
+      return ''
+    }
+  }
 }
