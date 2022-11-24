@@ -1,8 +1,8 @@
 <mat-card class="margin-a-20">
     <mat-card-content>
-        <form [formGroup]="todoForm">
+        <form [formGroup]="todoForm" class="form-size">
             <p>
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="outline" class="input-full-width">
                   <mat-label>タイトル</mat-label>
                   <input matInput placeholder="何かタイトル" formControlName="title">
                   <mat-error *ngIf="todoForm.controls['title'].hasError('required')">
@@ -11,33 +11,27 @@
                 </mat-form-field>
             </p>
             <p>
-                <mat-form-field appearance="outline">
-                    <mat-label>カテゴリ</mat-label>
-                    <select matNativeControl formControlName="category">
-                        <option *ngFor="let category of categories" [value]="category">
-                          {{ category }}
-                        </option>
-                      </select>
-                      <mat-error *ngIf="todoForm.controls['category'].hasError('required')">
-                        カテゴリは<strong>必須</strong>です
-                      </mat-error>
-                  </mat-form-field>
+              <mat-form-field appearance="outline" class="input-full-width">
+                <mat-label>カテゴリ※後でSelectBoxに変更する</mat-label>
+                <input matInput placeholder="カテゴリ※後でSelectBoxに変更する" formControlName="category">
+              </mat-form-field>
             </p>
             <p>
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="outline" class="textarea-full-width">
                   <mat-label>本文</mat-label>
-                  <textarea matInput placeholder="何か本文"></textarea>
+                  <textarea rows="5" matInput placeholder="何か本文" formControlName="body"></textarea>
                 </mat-form-field>
             </p>
             <p>
-                <mat-form-field appearance="outline">
-                    <mat-label>ステータス</mat-label>
-                    <input matInput placeholder="ステータス※後でSelectBoxに変更する">
-                  </mat-form-field>
+                <mat-form-field appearance="outline" class="input-full-width">
+                    <mat-label>ステータス※後でSelectBoxに変更する</mat-label>
+                    <input matInput placeholder="ステータス※後でSelectBoxに変更する" formControlName="state">
+                </mat-form-field>
             </p>
         </form>
     </mat-card-content>
     <mat-card-footer>
-        <a mat-flat-button color="primary" href="todo/add" class="margin-a-20">登録</a>
+      <button *ngIf="isAddPage" mat-raised-button color="primary" class="margin-a-20" (click)="onAddButtonClick()">登録</button>
+      <button *ngIf="!isAddPage" mat-raised-button color="primary" class="margin-a-20" (click)="onUpdateButtonClick()">更新</button>
     </mat-card-footer>
 </mat-card>
