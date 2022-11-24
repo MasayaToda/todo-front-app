@@ -19,12 +19,14 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatDialogModule} from '@angular/material/dialog';
 
 import { TodoListComponent } from './todo/todo-list/todo-list.component';
 import { TodoEditComponent } from './todo/todo-edit/todo-edit.component';
 import { TodoAddComponent } from './todo/todo-add/todo-add.component';
 import { CardComponent } from './todo/component/card/card.component';
 import { FormComponent } from './todo/component/form/form.component';
+import { DialogComponent } from './todo/component/dialog/dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +34,8 @@ import { FormComponent } from './todo/component/form/form.component';
     TodoEditComponent,
     TodoAddComponent,
     CardComponent,
-    FormComponent
+    FormComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +53,8 @@ import { FormComponent } from './todo/component/form/form.component';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,10 +1,12 @@
-import { Component,} from '@angular/core';
+import { Component,Inject} from '@angular/core';
 import { FormControl, FormGroup,Validators } from '@angular/forms';
 import { ActivatedRoute,Router } from '@angular/router';
 import { TodoService } from '../../service/todo.service';
 import { Todo } from '../../../models/todo';
 import { Message } from '../../../models/message';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import { DialogComponent} from '../dialog/dialog.component';
 @Component({
   selector: 'todo-form',
   templateUrl: './form.component.html',
@@ -22,6 +24,7 @@ export class FormComponent {
    */
   constructor(
     private snackBar: MatSnackBar,
+    private dialog: MatDialog,
     private route: ActivatedRoute,
     private router: Router,
     private todoService: TodoService
@@ -65,6 +68,24 @@ export class FormComponent {
     let todo:Todo = this.todoForm.value
     this.editTodo(this.id, todo)
     console.log(todo)
+  }
+  /**
+   * 削除ボタンクリック
+   */
+  onDeleteButtonClick(){
+    const dialogRef = this.dialog.open(DialogComponent, {
+      data:false
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.todoService.deleteTodo(this.id).subscribe((data)=>{
+          this.snackBar.open(data.message, "OK", {
+            duration: 2000
+          });
+          this.router.navigate(['/todo']);
+        })
+      }
+    });
   }
   /**
    * Todoデータ取得処理
