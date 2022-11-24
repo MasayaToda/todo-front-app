@@ -11,7 +11,7 @@ import { TodoService } from '../../service/todo.service';
 export class FormComponent {
   todoForm: FormGroup;
   categories: any;
-  isAddPage:boolean = false;
+  notAddPage:boolean = false;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -29,8 +29,8 @@ export class FormComponent {
   ngOnInit(): void {
     this.route.url.subscribe(url => {
       // URLから登録ページか編集ページか判断 ※決め打ち
-      this.isAddPage = url[1].path !== "add"
-      if(this.isAddPage){
+      this.notAddPage = url[1].path !== "add"
+      if(this.notAddPage){
         // 編集ページの場合
         this.route.params.subscribe(params => {
           // データを取得
