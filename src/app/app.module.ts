@@ -18,6 +18,7 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import { TodoListComponent } from './todo/todo-list/todo-list.component';
 import { TodoEditComponent } from './todo/todo-edit/todo-edit.component';
@@ -48,7 +49,8 @@ import { FormComponent } from './todo/component/form/form.component';
     MatBadgeModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

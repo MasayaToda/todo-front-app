@@ -13,7 +13,7 @@
             <p>
               <mat-form-field appearance="outline" class="input-full-width">
                 <mat-label>カテゴリ※後でSelectBoxに変更する</mat-label>
-                <input matInput placeholder="カテゴリ※後でSelectBoxに変更する" formControlName="category">
+                <input matInput placeholder="カテゴリ※後でSelectBoxに変更する" formControlName="categoryId">
               </mat-form-field>
             </p>
             <p>
@@ -31,7 +31,7 @@
         </form>
     </mat-card-content>
     <mat-card-footer>
-      <button *ngIf="!notAddPage" mat-raised-button color="primary" class="margin-a-20" (click)="onAddButtonClick()">登録</button>
-      <button *ngIf="notAddPage" mat-raised-button color="primary" class="margin-a-20" (click)="onUpdateButtonClick()">更新</button>
+      <button *ngIf="!notAddPage" mat-raised-button color="primary" class="margin-a-20" (click)="onAddButtonClick()" [disabled]="todoForm.invalid">登録</button>
+      <button *ngIf="notAddPage" mat-raised-button color="primary" class="margin-a-20" (click)="onUpdateButtonClick()" [disabled]="todoForm.invalid">更新</button>
     </mat-card-footer>
 </mat-card>

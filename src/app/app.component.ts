@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component,Output,EventEmitter } from '@angular/core';
 import { RouterOutlet, ChildrenOutletContexts } from '@angular/router';
 import { slideInAnimation} from './animation'
+
 @Component({
   selector: 'app-root',
   template: `
@@ -20,10 +21,14 @@ import { slideInAnimation} from './animation'
 })
 export class AppComponent {
   title = 'todo-front-app';
-  constructor(private contexts: ChildrenOutletContexts) {}
+  @Output() appMessageComponent = new EventEmitter<string>();
+  constructor(
+    private contexts: ChildrenOutletContexts,
+  ) {}
   prepareRoute(outlet: RouterOutlet) {
     return (
       outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation']
     );
   }
+  
 }
