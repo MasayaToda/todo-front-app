@@ -14,18 +14,27 @@
               <mat-form-field appearance="outline" class="input-full-width">
                 <mat-label>カテゴリ※後でSelectBoxに変更する</mat-label>
                 <input matInput placeholder="カテゴリ※後でSelectBoxに変更する" formControlName="categoryId">
+                <mat-error *ngIf="todoForm.controls['categoryId'].hasError('required')">
+                  カテゴリは<strong>必須</strong>です
+                </mat-error>
               </mat-form-field>
             </p>
             <p>
                 <mat-form-field appearance="outline" class="textarea-full-width">
                   <mat-label>本文</mat-label>
                   <textarea rows="5" matInput placeholder="何か本文" formControlName="body"></textarea>
+                  <mat-error *ngIf="todoForm.controls['body'].hasError('required')">
+                    本文は<strong>必須</strong>です
+                  </mat-error>
                 </mat-form-field>
             </p>
             <p>
                 <mat-form-field appearance="outline" class="input-full-width">
                     <mat-label>ステータス※後でSelectBoxに変更する</mat-label>
                     <input matInput placeholder="ステータス※後でSelectBoxに変更する" formControlName="state">
+                    <mat-error *ngIf="todoForm.controls['state'].hasError('required')">
+                      ステータスは<strong>必須</strong>です
+                    </mat-error>
                 </mat-form-field>
             </p>
         </form>

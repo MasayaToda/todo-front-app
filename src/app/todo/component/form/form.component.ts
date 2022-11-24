@@ -91,6 +91,11 @@ export class FormComponent {
   addTodo(todo:Todo){
     this.todoService.addTodo(todo).subscribe((data)=>{
       console.log(data)
+      console.log(data)
+      this.snackBar.open(data.message, "OK", {
+        duration: 2000
+      });
+      this.router.navigate(['/todo']);
     })
   }
   /**
