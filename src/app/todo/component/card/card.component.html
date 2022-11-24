@@ -1,0 +1,17 @@
+<mat-card class="margin-a-20">
+    <a class="card-link" href="/todo/show/1"></a>
+    <mat-card-header>
+        <span class="category"><mat-card-title>{{item.categoryId}}</mat-card-title></span>
+        <span><mat-card-title>{{item.title}}</mat-card-title></span>
+        <span class="spacer"></span> 
+        <span>
+            <mat-card-subtitle>{{item.createdAt}}</mat-card-subtitle>
+            <mat-card-subtitle>{{item.updatedAt}}</mat-card-subtitle>
+        </span>
+    </mat-card-header>
+    <mat-card-content>
+        <div style="white-space: pre-wrap;">
+            {{getBrEscape(item.body)}}
+        </div>
+    </mat-card-content>
+  </mat-card>
