@@ -97,6 +97,8 @@ export class FormComponent {
       console.log(data)
       // idを保持
       this.id = id
+      // bodyの改行を修正
+      data.body = data.body.replace(/(\\r\\n|\\n|\\r)/g,"\n")
       this.todoForm = new FormGroup({
         title:    new FormControl(data.title, Validators.required),
         categoryId: new FormControl(data.categoryId, Validators.required),
