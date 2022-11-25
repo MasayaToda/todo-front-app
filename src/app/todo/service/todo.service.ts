@@ -27,11 +27,11 @@ export class TodoService {
 
   addTodo(Todo: Todo): Observable<Message> {
     const newTodo: Todo = {
-      id:    Todo.id,
-      categoryId: Todo.categoryId,
+      id:    Number(Todo.id),
+      categoryId: Number(Todo.categoryId),
       title: Todo.title,
       body: Todo.body,
-      state: Todo.state,
+      state: Number(Todo.state),
     }
     return this.http.post<Message>(this.Url, newTodo, this.httpOptions)
 
@@ -40,11 +40,11 @@ export class TodoService {
   editTodo(id:number, Todo: Todo): Observable<Message> {
     const url = `${this.Url}/${id}`
     const editTodo: Todo = {
-        id:    Todo.id,
-        categoryId: Todo.categoryId,
+        id:    Number(Todo.id),
+        categoryId: Number(Todo.categoryId),
         title: Todo.title,
         body: Todo.body,
-        state: Todo.state,
+        state: Number(Todo.state),
     }
     return this.http.put<Message>(url, editTodo, this.httpOptions)
   }
