@@ -1,7 +1,7 @@
 import { Component,Inject} from '@angular/core';
 import { FormControl, FormGroup,Validators } from '@angular/forms';
 import { ActivatedRoute,Router } from '@angular/router';
-import { CategoryService } from '../../service/category.service';
+import { CategoryService } from '../../../service/category.service';
 import { Category } from '../../../models/category';
 import { Message } from '../../../models/message';
 import { MatSnackBar } from '@angular/material/snack-bar';
