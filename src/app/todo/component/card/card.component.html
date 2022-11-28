@@ -3,6 +3,7 @@
     <mat-card-header>
         <span class="category"><mat-card-title>{{item.id}}</mat-card-title></span>
         <span><mat-card-title>{{item.categoryId}} {{item.title}}</mat-card-title></span>
+        <span  class="category"><mat-chip-listbox><mat-chip-option color="accent" style="opacity: unset;"selected disabled>{{getStatusName(item.state)}}</mat-chip-option></mat-chip-listbox></span>
         <span class="spacer"></span> 
         <span>
             <mat-card-subtitle>{{getLocalTime(item.createdAt)}}</mat-card-subtitle>
