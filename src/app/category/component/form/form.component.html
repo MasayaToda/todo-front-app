@@ -32,7 +32,7 @@
     </mat-card-content>
     <mat-card-footer>
       <span class="float-left">
-        <button mat-raised-button color="warn" class="margin-a-20" (click)="onDeleteButtonClick()" ><mat-icon>delete</mat-icon>削除</button>
+        <button *ngIf="notAddPage" mat-raised-button color="warn" class="margin-a-20" (click)="onDeleteButtonClick()" ><mat-icon>delete</mat-icon>削除</button>
       </span> 
       <span> </span>
       <span class="float-right">
