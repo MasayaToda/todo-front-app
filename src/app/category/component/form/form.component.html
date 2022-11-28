@@ -1,4 +1,4 @@
-<mat-card class="margin-a-20">
+<mat-card class="margin-a-20 card-form-elevation">
     <mat-card-content>
         <form [formGroup]="categoryForm" class="form-size">
             <p>
@@ -32,12 +32,12 @@
     </mat-card-content>
     <mat-card-footer>
       <span class="float-left">
-        <button mat-raised-button color="warn" class="margin-a-20" (click)="onDeleteButtonClick()" >削除</button>
+        <button mat-raised-button color="warn" class="margin-a-20" (click)="onDeleteButtonClick()" ><mat-icon>delete</mat-icon>削除</button>
       </span> 
       <span> </span>
       <span class="float-right">
-        <button *ngIf="!notAddPage" mat-raised-button color="primary" class="margin-a-20" (click)="onAddButtonClick()" [disabled]="categoryForm.invalid">登録</button>
-        <button *ngIf="notAddPage" mat-raised-button color="primary" class="margin-a-20" (click)="onUpdateButtonClick()" [disabled]="categoryForm.invalid">更新</button>
+        <button *ngIf="!notAddPage" mat-raised-button color="primary" class="margin-a-20" (click)="onAddButtonClick()" [disabled]="categoryForm.invalid"><mat-icon>group_add</mat-icon>登録</button>
+        <button *ngIf="notAddPage" mat-raised-button color="primary" class="margin-a-20" (click)="onUpdateButtonClick()" [disabled]="categoryForm.invalid"><mat-icon>edit</mat-icon>更新</button>
       </span> 
     </mat-card-footer>
 </mat-card>

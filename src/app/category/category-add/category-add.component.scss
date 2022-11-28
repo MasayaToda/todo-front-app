@@ -1,3 +1,7 @@
+@use '@angular/material' as mat;
+.app-bar{
+    @include mat.elevation(5);
+}
 .margin-a-20{
     margin: 20px;
 }
