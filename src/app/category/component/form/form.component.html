@@ -3,37 +3,28 @@
         <form [formGroup]="categoryForm" class="form-size">
             <p>
                 <mat-form-field appearance="outline" class="input-full-width">
-                  <mat-label>タイトル</mat-label>
-                  <input matInput placeholder="何かタイトル" formControlName="title">
-                  <mat-error *ngIf="categoryForm.controls['title'].hasError('required')">
-                    タイトルは<strong>必須</strong>です
+                  <mat-label>カテゴリ名</mat-label>
+                  <input matInput placeholder="何かタイトル" formControlName="name">
+                  <mat-error *ngIf="categoryForm.controls['name'].hasError('required')">
+                    カテゴリ名は<strong>必須</strong>です
                   </mat-error>
                 </mat-form-field>
             </p>
             <p>
               <mat-form-field appearance="outline" class="input-full-width">
-                <mat-label>カテゴリ※後でSelectBoxに変更する</mat-label>
-                <input matInput placeholder="カテゴリ※後でSelectBoxに変更する" formControlName="categoryId">
-                <mat-error *ngIf="categoryForm.controls['categoryId'].hasError('required')">
-                  カテゴリは<strong>必須</strong>です
+                <mat-label>slug</mat-label>
+                <input matInput placeholder="カテゴリ※後でSelectBoxに変更する" formControlName="slug">
+                <mat-error *ngIf="categoryForm.controls['slug'].hasError('required')">
+                  slugは<strong>英数字のみ</strong>で<strong>必須</strong>です
                 </mat-error>
               </mat-form-field>
             </p>
             <p>
-                <mat-form-field appearance="outline" class="textarea-full-width">
-                  <mat-label>本文</mat-label>
-                  <textarea rows="5" matInput placeholder="何か本文" formControlName="body" class="textarea-wrap"></textarea>
-                  <mat-error *ngIf="categoryForm.controls['body'].hasError('required')">
-                    本文は<strong>必須</strong>です
-                  </mat-error>
-                </mat-form-field>
-            </p>
-            <p>
                 <mat-form-field appearance="outline" class="input-full-width">
-                    <mat-label>ステータス※後でSelectBoxに変更する</mat-label>
-                    <input matInput placeholder="ステータス※後でSelectBoxに変更する" formControlName="state">
-                    <mat-error *ngIf="categoryForm.controls['state'].hasError('required')">
-                      ステータスは<strong>必須</strong>です
+                    <mat-label>色※後でSelectBoxに変更する</mat-label>
+                    <input type="number" matInput placeholder="色※後でSelectBoxに変更する" formControlName="color">
+                    <mat-error *ngIf="categoryForm.controls['color'].hasError('required')">
+                      色は<strong>必須</strong>です
                     </mat-error>
                 </mat-form-field>
             </p>

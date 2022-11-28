@@ -28,6 +28,8 @@ import { TodoCardComponent } from './todo/component/card/card.component';
 import { TodoFormComponent } from './todo/component/form/form.component';
 import { DialogComponent } from './common/dialog/dialog.component';
 import { CategoryListComponent } from './category/category-list/category-list.component';
+import { CategoryAddComponent } from './category/category-add/category-add.component';
+import { CategoryEditComponent } from './category/category-edit/category-edit.component';
 import { CategoryCardComponent } from './category/component/card/card.component';
 import { CategoryFormComponent } from './category/component/form/form.component';
 @NgModule({
@@ -40,6 +42,8 @@ import { CategoryFormComponent } from './category/component/form/form.component'
     TodoFormComponent,
     DialogComponent,
     CategoryListComponent,
+    CategoryAddComponent,
+    CategoryEditComponent,
     CategoryCardComponent,
     CategoryFormComponent,
   ],
