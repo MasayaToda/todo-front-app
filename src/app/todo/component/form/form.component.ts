@@ -1,7 +1,7 @@
 import { Component,Inject} from '@angular/core';
 import { FormControl, FormGroup,Validators } from '@angular/forms';
 import { ActivatedRoute,Router } from '@angular/router';
-import { TodoService } from '../../service/todo.service';
+import { TodoService } from '../../../service/todo.service';
 import { Todo } from '../../../models/todo';
 import { Message } from '../../../models/message';
 import { MatSnackBar } from '@angular/material/snack-bar';

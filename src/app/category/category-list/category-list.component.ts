@@ -1,5 +1,5 @@
 import { Component, OnInit , Input} from '@angular/core';
-import { CategoryService } from '../service/category.service';
+import { CategoryService } from '../../service/category.service';
 @Component({
   selector: 'app-category-list',
   templateUrl: './category-list.component.html',
