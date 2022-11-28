@@ -24,18 +24,24 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { TodoListComponent } from './todo/todo-list/todo-list.component';
 import { TodoEditComponent } from './todo/todo-edit/todo-edit.component';
 import { TodoAddComponent } from './todo/todo-add/todo-add.component';
-import { CardComponent } from './todo/component/card/card.component';
-import { FormComponent } from './todo/component/form/form.component';
-import { DialogComponent } from './todo/component/dialog/dialog.component';
+import { TodoCardComponent } from './todo/component/card/card.component';
+import { TodoFormComponent } from './todo/component/form/form.component';
+import { DialogComponent } from './common/dialog/dialog.component';
+import { CategoryListComponent } from './category/category-list/category-list.component';
+import { CategoryCardComponent } from './category/component/card/card.component';
+import { CategoryFormComponent } from './category/component/form/form.component';
 @NgModule({
   declarations: [
     AppComponent,
     TodoListComponent,
     TodoEditComponent,
     TodoAddComponent,
-    CardComponent,
-    FormComponent,
-    DialogComponent
+    TodoCardComponent,
+    TodoFormComponent,
+    DialogComponent,
+    CategoryListComponent,
+    CategoryCardComponent,
+    CategoryFormComponent,
   ],
   imports: [
     BrowserModule,

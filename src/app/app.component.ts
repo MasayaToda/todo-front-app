@@ -9,6 +9,7 @@ import { slideInAnimation} from './animation'
     <span>My Application</span>
     <span class="spacer" > </span> 
     <a mat-flat-button color="primary" routerLink="todo">Todo</a>
+    <a mat-flat-button color="primary" routerLink="category">Category</a>
   </mat-toolbar>
     <div [@routeAnimations]="prepareRoute(outlet)">
       <router-outlet #outlet="outlet"></router-outlet>

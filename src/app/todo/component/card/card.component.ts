@@ -7,7 +7,7 @@ import { Status } from '../../../models/status';
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss']
 })
-export class CardComponent {
+export class TodoCardComponent {
   @Input() item:Todo = {
       id: 0,
       categoryId: 0,
