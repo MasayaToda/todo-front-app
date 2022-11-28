@@ -23,7 +23,8 @@ export class CardComponent {
   }
   getLocalTime(timeStr?:string){
     if(typeof timeStr === 'string'){
-      return new Date(timeStr).toLocaleDateString() +' '+ new Date(timeStr).toLocaleTimeString()
+      let date = new Date(timeStr)
+      return date.toLocaleDateString() +' '+ date.toLocaleTimeString()
     }else{
       return ''
     }
