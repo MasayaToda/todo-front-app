@@ -18,11 +18,16 @@ export class TodoCardComponent {
       updatedAt: ''
   }
   @Input() status:Status[] = []
-  taskStatusColorList:any =[
-    "primary",
-    "accent",
-    "warn"
+  todoStatusColorClassList:any =[
+    "card-chip-color-todo",
+    "card-chip-color-progress",
+    "card-chip-color-complete"
   ]
+  categoryColorClassList:any ={
+    "info":"card-chip-color-todo",
+    "warn":"card-chip-color-progress",
+    "danger":"card-chip-color-complete"
+  }
   constructor(private sanitizer: DomSanitizer) {}
   getBrEscape(text:string){
     return text.replace(/\\r\\n/g, '\r\n');
@@ -42,7 +47,14 @@ export class TodoCardComponent {
       return ''
     }
   }
-  getTaskStatusColorList(state:number){
-    return this.taskStatusColorList[state]
+  todoStatusColorClass(state:number){
+    return this.todoStatusColorClassList[state]
+  }
+  cateoryColorClass(colorName?:string){
+    if(typeof colorName === 'string'){
+      return this.categoryColorClassList[colorName]
+    }else{
+      return 'card-chip-color-none'
+    }
   }
 }

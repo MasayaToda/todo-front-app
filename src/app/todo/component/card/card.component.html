@@ -2,8 +2,8 @@
     <a class="card-link" [routerLink]="['/todo/show', item.id ]"></a>
     <mat-card-header>
         <span class="category"><mat-card-title>{{item.id}}</mat-card-title></span>
-        <span class="category"><mat-card-title>{{item.categoryId}} {{item.title}}</mat-card-title></span>
-        <span class="category"><mat-chip-listbox><mat-chip-option color="{{getTaskStatusColorList(item.state)}}" class="card-chip" selected disabled>{{getStatusName(item.state)}}</mat-chip-option></mat-chip-listbox></span>
+        <span class="category"><mat-card-title><span class="card-chip category {{cateoryColorClass(item.categoryColor)}}" >{{item.categoryName}}</span>{{item.title}}</mat-card-title></span>
+        <span class="category"><mat-chip-listbox><mat-chip-option class="card-chip {{todoStatusColorClass(item.state)}}" disabled>{{getStatusName(item.state)}}</mat-chip-option></mat-chip-listbox></span>
         <span class="spacer"></span> 
         <span>
             <mat-card-subtitle>作成日:{{getLocalTime(item.createdAt)}}</mat-card-subtitle>
