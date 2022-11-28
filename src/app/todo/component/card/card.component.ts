@@ -18,6 +18,11 @@ export class CardComponent {
       updatedAt: ''
   }
   @Input() status:Status[] = []
+  taskStatusColorList:any =[
+    "primary",
+    "accent",
+    "warn"
+  ]
   constructor(private sanitizer: DomSanitizer) {}
   getBrEscape(text:string){
     return text.replace(/\\r\\n/g, '\r\n');
@@ -36,5 +41,8 @@ export class CardComponent {
     }else{
       return ''
     }
+  }
+  getTaskStatusColorList(state:number){
+    return this.taskStatusColorList[state]
   }
 }
