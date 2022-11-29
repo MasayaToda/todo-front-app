@@ -26,6 +26,7 @@ import { TodoEditComponent } from './todo/todo-edit/todo-edit.component';
 import { TodoAddComponent } from './todo/todo-add/todo-add.component';
 import { TodoCardComponent } from './todo/component/card/card.component';
 import { TodoFormComponent } from './todo/component/form/form.component';
+import { Utils } from './common/util/util';
 import { DialogComponent } from './common/dialog/dialog.component';
 import { CategoryListComponent } from './category/category-list/category-list.component';
 import { CategoryCardComponent } from './category/component/card/card.component';
@@ -62,7 +63,7 @@ import { CategoryFormComponent } from './category/component/form/form.component'
     MatSnackBarModule,
     MatDialogModule
   ],
-  providers: [],
+  providers: [Utils],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
