@@ -3,4 +3,4 @@
     <span class="spacer"></span> 
     <a mat-flat-button color="primary" routerLink="/todo/add"><mat-icon>add_task</mat-icon>Todo追加</a>
 </mat-toolbar>
-<todo-card *ngFor="let todo of todoList" [item]="todo"></todo-card>
+<todo-card *ngFor="let todo of todoList" [item]="todo" [status]="statusList"></todo-card>

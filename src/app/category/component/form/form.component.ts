@@ -1,41 +1,40 @@
 import { Component,Input} from '@angular/core';
 import { FormControl, FormGroup,Validators } from '@angular/forms';
 import { ActivatedRoute,Router } from '@angular/router';
-import { TodoService } from '../../../service/todo.service';
-import { Todo } from '../../../models/todo';
+import { CategoryService } from '../../../service/category.service';
+import { Category } from '../../../models/category';
 import { Message } from '../../../models/message';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import { DialogComponent} from '../../../common/dialog/dialog.component';
 @Component({
-  selector: 'todo-form',
+  selector: 'category-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss']
 })
-export class TodoFormComponent {
+export class CategoryFormComponent {
   @Input() path: string = ''
-  todoForm: FormGroup;
+  categoryForm: FormGroup;
   id:number = 0;
   categories: any;
   notAddPage:boolean = false;
   /**
    * コンストラクタ
    * @param route 
-   * @param todoService 
+   * @param categoryService 
    */
   constructor(
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
     private route: ActivatedRoute,
     private router: Router,
-    private todoService: TodoService
+    private categoryService: CategoryService
   ) {
     // Form初期化
-    this.todoForm = new FormGroup({
-      title:    new FormControl('', Validators.required),
-      categoryId: new FormControl('', Validators.required),
-      body: new FormControl('', Validators.required),
-      state: new FormControl('', Validators.required),
+    this.categoryForm = new FormGroup({
+      name:    new FormControl('', Validators.required),
+      slug: new FormControl('', Validators.required),
+      color: new FormControl(0, Validators.required),
     });
   }
   /**
@@ -49,7 +48,7 @@ export class TodoFormComponent {
       this.route.params.subscribe(params => {
         
         // データを取得
-        this.getTodo(Number(params['id']))
+        this.getCategory(Number(params['id']))
       });
     }
   }
@@ -57,16 +56,16 @@ export class TodoFormComponent {
    * 登録ボタンクリックイベント
    */
   onAddButtonClick(){
-    let todo:Todo = this.todoForm.value
-    this.addTodo(todo)
+    let category:Category = this.categoryForm.value
+    this.addCategory(category)
   }
   /**
    * 更新ボタンクリックイベント
    */
   onUpdateButtonClick(){
-    let todo:Todo = this.todoForm.value
-    this.editTodo(this.id, todo)
-    console.log(todo)
+    let category:Category = this.categoryForm.value
+    this.editCategory(this.id, category)
+    console.log(category)
   }
   /**
    * 削除ボタンクリック
@@ -77,11 +76,11 @@ export class TodoFormComponent {
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result){
-        this.todoService.deleteTodo(this.id).subscribe((data)=>{
+        this.categoryService.deleteCategory(this.id).subscribe((data)=>{
           this.snackBar.open(data.message, "OK", {
             duration: 2000
           });
-          this.router.navigate(['/todo']);
+          this.router.navigate(['/category']);
         })
       }
     },
@@ -90,56 +89,50 @@ export class TodoFormComponent {
     });
   }
   /**
-   * Todoデータ取得処理
+   * Categoryデータ取得処理
    * @param id 
-   * @returns Todoデータ
+   * @returns Categoryデータ
    */
-  getTodo(id:number) {
-    return this.todoService.getTodo(id).subscribe((data)=>{
+  getCategory(id:number) {
+    return this.categoryService.getCategory(id).subscribe((data)=>{
       console.log(data)
       // idを保持
       this.id = id
-      // bodyの改行を修正
-      data.body = data.body.replace(/(\\r\\n|\\n|\\r)/g,"\n")
-      this.todoForm = new FormGroup({
-        title:    new FormControl(data.title, Validators.required),
-        categoryId: new FormControl(data.categoryId, Validators.required),
-        body: new FormControl(data.body, Validators.required),
-        state: new FormControl(data.state, Validators.required),
+      this.categoryForm = new FormGroup({
+        name:    new FormControl(data.name, Validators.required),
+        slug: new FormControl(data.slug, Validators.required),
+        color: new FormControl(data.color, Validators.required),
       });
+    })
+  }
+  /**
+   * Categoryデータ登録処理
+   * @param category Categoryデータ
+   */
+  addCategory(category:Category){
+    this.categoryService.addCategory(category).subscribe((data)=>{
+      console.log(data)
+      console.log(data)
+      this.snackBar.open(data.message, "OK", {
+        duration: 2000
+      });
+      this.router.navigate(['/category']);
     },
     (error)=>{
       this.snackBar.open("サーバーとの通信に失敗しました", "OK");
     })
   }
   /**
-   * Todoデータ登録処理
-   * @param todo Todoデータ
+   * Categoryデータ更新処理
+   * @param category 
    */
-  addTodo(todo:Todo){
-    this.todoService.addTodo(todo).subscribe((data)=>{
-      console.log(data)
+  editCategory(id:number, category:Category){
+    this.categoryService.editCategory(id, category).subscribe((data:Message)=>{
       console.log(data)
       this.snackBar.open(data.message, "OK", {
         duration: 2000
       });
-      this.router.navigate(['/todo']);
-    },
-    (error)=>{
-      this.snackBar.open("サーバーとの通信に失敗しました", "OK");
-    })
-  }
-  /**
-   * Todoデータ更新処理
-   * @param todo 
-   */
-  editTodo(id:number, todo:Todo){
-    this.todoService.editTodo(id, todo).subscribe((data:Message)=>{
-      console.log(data)
-      this.snackBar.open(data.message, "OK", {
-        duration: 2000
-      });
-      this.router.navigate(['/todo']);
+      this.router.navigate(['/category']);
     },
     (error)=>{
       this.snackBar.open("サーバーとの通信に失敗しました", "OK");

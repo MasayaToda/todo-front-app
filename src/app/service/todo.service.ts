@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { identity, Observable, of } from 'rxjs';
-import { Todo } from '../../models/todo';
-import { Message } from '../../models/message';
+import { Todo } from '../models/todo';
+import { Message } from '../models/message';
 import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
