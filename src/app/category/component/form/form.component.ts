@@ -32,7 +32,10 @@ export class CategoryFormComponent {
     // Form初期化
     this.categoryForm = new FormGroup({
       name:    new FormControl('', Validators.required),
-      slug: new FormControl('', Validators.required),
+      slug: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[0-9a-zA-Z]+$')
+      ]),
       color: new FormControl(0, Validators.required),
     });
   }

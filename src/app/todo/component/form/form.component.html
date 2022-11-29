@@ -12,8 +12,10 @@
             </p>
             <p>
               <mat-form-field appearance="outline" class="input-full-width">
-                <mat-label>カテゴリ※後でSelectBoxに変更する</mat-label>
-                <input matInput placeholder="カテゴリ※後でSelectBoxに変更する" formControlName="categoryId">
+                <mat-label>カテゴリ</mat-label>
+                <mat-select matInput placeholder="カテゴリ" formControlName="categoryId">
+                  <mat-option *ngFor="let category of categoryList" [value]="category.id">{{category.name}}</mat-option>
+                </mat-select>
                 <mat-error *ngIf="todoForm.controls['categoryId'].hasError('required')">
                   カテゴリは<strong>必須</strong>です
                 </mat-error>
@@ -30,8 +32,10 @@
             </p>
             <p>
                 <mat-form-field appearance="outline" class="input-full-width">
-                    <mat-label>ステータス※後でSelectBoxに変更する</mat-label>
-                    <input matInput placeholder="ステータス※後でSelectBoxに変更する" formControlName="state">
+                    <mat-label>ステータス</mat-label>
+                    <mat-select matInput placeholder="ステータス※後でSelectBoxに変更する" formControlName="state">
+                      <mat-option *ngFor="let status of statusList" [value]="status.code">{{status.name}}</mat-option>
+                    </mat-select>
                     <mat-error *ngIf="todoForm.controls['state'].hasError('required')">
                       ステータスは<strong>必須</strong>です
                     </mat-error>

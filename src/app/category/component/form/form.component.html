@@ -14,7 +14,7 @@
               <mat-form-field appearance="outline" class="input-full-width">
                 <mat-label>slug</mat-label>
                 <input matInput placeholder="カテゴリ※後でSelectBoxに変更する" formControlName="slug">
-                <mat-error *ngIf="categoryForm.controls['slug'].hasError('required')">
+                <mat-error *ngIf="categoryForm.controls['slug'].hasError('required') || categoryForm.controls['slug'].hasError('pattern')">
                   slugは<strong>英数字のみ</strong>で<strong>必須</strong>です
                 </mat-error>
               </mat-form-field>
