@@ -83,6 +83,9 @@ export class CategoryFormComponent {
           this.router.navigate(['/category']);
         })
       }
+    },
+    (error)=>{
+      this.snackBar.open("サーバーとの通信に失敗しました", "OK");
     });
   }
   /**
@@ -114,6 +117,9 @@ export class CategoryFormComponent {
         duration: 2000
       });
       this.router.navigate(['/category']);
+    },
+    (error)=>{
+      this.snackBar.open("サーバーとの通信に失敗しました", "OK");
     })
   }
   /**
@@ -127,6 +133,9 @@ export class CategoryFormComponent {
         duration: 2000
       });
       this.router.navigate(['/category']);
+    },
+    (error)=>{
+      this.snackBar.open("サーバーとの通信に失敗しました", "OK");
     })
   }
 }

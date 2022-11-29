@@ -84,6 +84,9 @@ export class TodoFormComponent {
           this.router.navigate(['/todo']);
         })
       }
+    },
+    (error)=>{
+      this.snackBar.open("サーバーとの通信に失敗しました", "OK");
     });
   }
   /**
@@ -104,6 +107,9 @@ export class TodoFormComponent {
         body: new FormControl(data.body, Validators.required),
         state: new FormControl(data.state, Validators.required),
       });
+    },
+    (error)=>{
+      this.snackBar.open("サーバーとの通信に失敗しました", "OK");
     })
   }
   /**
@@ -118,6 +124,9 @@ export class TodoFormComponent {
         duration: 2000
       });
       this.router.navigate(['/todo']);
+    },
+    (error)=>{
+      this.snackBar.open("サーバーとの通信に失敗しました", "OK");
     })
   }
   /**
@@ -131,6 +140,9 @@ export class TodoFormComponent {
         duration: 2000
       });
       this.router.navigate(['/todo']);
+    },
+    (error)=>{
+      this.snackBar.open("サーバーとの通信に失敗しました", "OK");
     })
   }
 }
