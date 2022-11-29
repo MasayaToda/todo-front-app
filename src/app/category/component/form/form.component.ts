@@ -1,4 +1,4 @@
-import { Component,Inject} from '@angular/core';
+import { Component,Input} from '@angular/core';
 import { FormControl, FormGroup,Validators } from '@angular/forms';
 import { ActivatedRoute,Router } from '@angular/router';
 import { CategoryService } from '../../../service/category.service';
@@ -13,6 +13,7 @@ import { DialogComponent} from '../../../common/dialog/dialog.component';
   styleUrls: ['./form.component.scss']
 })
 export class CategoryFormComponent {
+  @Input() path: string = ''
   categoryForm: FormGroup;
   id:number = 0;
   categories: any;
@@ -40,18 +41,16 @@ export class CategoryFormComponent {
    * 初期化イベント
    */
   ngOnInit(): void {
-    this.route.url.subscribe(url => {
-      // URLから登録ページか編集ページか判断 ※決め打ち
-      this.notAddPage = url[1].path !== "add"
-      if(this.notAddPage){
-        // 編集ページの場合
-        this.route.params.subscribe(params => {
-          
-          // データを取得
-          this.getCategory(Number(params['id']))
-        });
-      }
-    });
+    // コンポーネント呼び出し元から、登録Formか更新Formか判断する
+    this.notAddPage = this.path !== "add"
+    if(this.notAddPage){
+      // 編集ページの場合
+      this.route.params.subscribe(params => {
+        
+        // データを取得
+        this.getCategory(Number(params['id']))
+      });
+    }
   }
   /**
    * 登録ボタンクリックイベント
