@@ -61,6 +61,14 @@ export class TodoFormComponent {
         // データを取得
         this.getTodo(Number(params['id']))
       });
+    }else{
+      // Form初期化(ステータスをTODO(着手前)に固定)
+      this.todoForm = new FormGroup({
+        title:    new FormControl('', Validators.required),
+        categoryId: new FormControl('', Validators.required),
+        body: new FormControl('', Validators.required),
+        state: new FormControl({value:0,disabled:true}, Validators.required),
+      });
     }
   }
   /**
