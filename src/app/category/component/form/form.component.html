@@ -20,13 +20,15 @@
               </mat-form-field>
             </p>
             <p>
-                <mat-form-field appearance="outline" class="input-full-width">
-                    <mat-label>色※後でSelectBoxに変更する</mat-label>
-                    <input type="number" matInput placeholder="色※後でSelectBoxに変更する" formControlName="color">
-                    <mat-error *ngIf="categoryForm.controls['color'].hasError('required')">
-                      色は<strong>必須</strong>です
-                    </mat-error>
-                </mat-form-field>
+              <mat-form-field appearance="outline" class="input-full-width">
+                  <mat-label>色</mat-label>
+                  <mat-select matInput placeholder="ステータス※後でSelectBoxに変更する" formControlName="color">
+                    <mat-option *ngFor="let color of colorList" [value]="color.code">{{color.name}}</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="categoryForm.controls['color'].hasError('required')">
+                    色は<strong>必須</strong>です
+                  </mat-error>
+              </mat-form-field>
             </p>
         </form>
     </mat-card-content>

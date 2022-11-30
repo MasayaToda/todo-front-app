@@ -2,7 +2,9 @@ import { Component,Inject} from '@angular/core';
 import { FormControl, FormGroup,Validators } from '@angular/forms';
 import { ActivatedRoute,Router } from '@angular/router';
 import { CategoryService } from '../../../service/category.service';
+import { ColorService } from '../../../service/color.service';
 import { Category } from '../../../models/category';
+import { Color } from '../../../models/color';
 import { Message } from '../../../models/message';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
@@ -17,6 +19,7 @@ export class CategoryFormComponent {
   id:number = 0;
   categories: any;
   notAddPage:boolean = false;
+  colorList:Color[] = []
   /**
    * コンストラクタ
    * @param route 
@@ -27,7 +30,8 @@ export class CategoryFormComponent {
     private dialog: MatDialog,
     private route: ActivatedRoute,
     private router: Router,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private colorService: ColorService
   ) {
     // Form初期化
     this.categoryForm = new FormGroup({
@@ -55,6 +59,15 @@ export class CategoryFormComponent {
         });
       }
     });
+  }
+  /**
+   * ステータスリストを取得
+   * @returns ステータスリスト取得処理
+   */
+   getColorList() {
+    return this.colorService.listColor().subscribe((data)=>{
+      this.colorList = data
+    })
   }
   /**
    * 登録ボタンクリックイベント
