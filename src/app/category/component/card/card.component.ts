@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { DomSanitizer, SafeHtml} from '@angular/platform-browser';
 import { Category } from '../../../models/category';
 import { Status } from '../../../models/status';
+import { Utils } from '../../../common/util/util';
 @Component({
   selector: 'category-card',
   templateUrl: './card.component.html',
@@ -16,16 +17,9 @@ export class CategoryCardComponent {
     createdAt:'',
     updatedAt:''
   }
-  constructor(private sanitizer: DomSanitizer) {}
+  constructor(private sanitizer: DomSanitizer,protected util: Utils) {}
   getBrEscape(text:string){
     return text.replace(/\\r\\n/g, '\r\n');
-  }
-  getLocalTime(timeStr?:string){
-    if(typeof timeStr === 'string'){
-      return new Date(timeStr).toLocaleDateString() +' '+ new Date(timeStr).toLocaleTimeString()
-    }else{
-      return ''
-    }
   }
   getCategoryColor(code:number){
     return ''
