@@ -1,9 +1,9 @@
 <mat-card class="margin-a-20 card-form-elevation">
     <a class="card-link" [routerLink]="['/category/show', item.id ]"></a>
-    <mat-card-header>
+    <mat-card-header class="{{getCategoryColor(item.color)}}">
         <span class="category"><mat-card-title>{{item.id}}</mat-card-title></span>
         <span class="category"><mat-card-title>{{item.name}}</mat-card-title></span>
-        <span class="category"><mat-chip-listbox><mat-chip-option color="{{getCategoryColor(item.color)}}" class="card-chip" selected disabled>{{item.slug}}</mat-chip-option></mat-chip-listbox></span>
+        <span class="category"><mat-chip-listbox><mat-chip-option class="card-chip {{getCategoryColor(item.color)}}" selected disabled>{{item.slug}}</mat-chip-option></mat-chip-listbox></span>
         <span class="spacer"></span> 
         <span>
             <mat-card-subtitle>作成日:{{util.getLocalTime(item.createdAt)}}</mat-card-subtitle>
