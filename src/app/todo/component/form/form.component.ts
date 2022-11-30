@@ -1,4 +1,4 @@
-import { Component,Inject} from '@angular/core';
+import { Component,Input} from '@angular/core';
 import { FormControl, FormGroup,Validators } from '@angular/forms';
 import { ActivatedRoute,Router } from '@angular/router';
 import { TodoService } from '../../../service/todo.service';
@@ -13,6 +13,7 @@ import { DialogComponent} from '../../../common/dialog/dialog.component';
   styleUrls: ['./form.component.scss']
 })
 export class TodoFormComponent {
+  @Input() path: string = ''
   todoForm: FormGroup;
   id:number = 0;
   categories: any;
@@ -41,18 +42,16 @@ export class TodoFormComponent {
    * 初期化イベント
    */
   ngOnInit(): void {
-    this.route.url.subscribe(url => {
-      // URLから登録ページか編集ページか判断 ※決め打ち
-      this.notAddPage = url[1].path !== "add"
-      if(this.notAddPage){
-        // 編集ページの場合
-        this.route.params.subscribe(params => {
-          
-          // データを取得
-          this.getTodo(Number(params['id']))
-        });
-      }
-    });
+    // コンポーネント呼び出し元から、登録Formか更新Formか判断する
+    this.notAddPage = this.path !== "add"
+    if(this.notAddPage){
+      // 編集ページの場合
+      this.route.params.subscribe(params => {
+        
+        // データを取得
+        this.getTodo(Number(params['id']))
+      });
+    }
   }
   /**
    * 登録ボタンクリックイベント
@@ -85,6 +84,9 @@ export class TodoFormComponent {
           this.router.navigate(['/todo']);
         })
       }
+    },
+    (error)=>{
+      this.snackBar.open("サーバーとの通信に失敗しました", "OK");
     });
   }
   /**
@@ -105,6 +107,9 @@ export class TodoFormComponent {
         body: new FormControl(data.body, Validators.required),
         state: new FormControl(data.state, Validators.required),
       });
+    },
+    (error)=>{
+      this.snackBar.open("サーバーとの通信に失敗しました", "OK");
     })
   }
   /**
@@ -119,6 +124,9 @@ export class TodoFormComponent {
         duration: 2000
       });
       this.router.navigate(['/todo']);
+    },
+    (error)=>{
+      this.snackBar.open("サーバーとの通信に失敗しました", "OK");
     })
   }
   /**
@@ -132,6 +140,9 @@ export class TodoFormComponent {
         duration: 2000
       });
       this.router.navigate(['/todo']);
+    },
+    (error)=>{
+      this.snackBar.open("サーバーとの通信に失敗しました", "OK");
     })
   }
 }
