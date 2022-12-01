@@ -1,6 +1,6 @@
-<mat-toolbar class="margin-a-20" style="width:auto;">
+<mat-toolbar class="margin-a-20 app-bar" style="width:auto;">
     <span>Category一覧</span>
     <span class="spacer"></span> 
-    <a mat-flat-button color="primary" routerLink="/category/add"><mat-icon>add_task</mat-icon>Category追加</a>
+    <a mat-flat-button color="primary" routerLink="/category/add"><mat-icon>group_add</mat-icon>Category追加</a>
 </mat-toolbar>
 <category-card *ngFor="let category of categoryList" [item]="category"></category-card>

@@ -6,4 +6,6 @@ export interface Todo {
     state: number;
     createdAt?:string;
     updatedAt?:string;
+    categoryName?:string;
+    categoryColor?:string;
   }

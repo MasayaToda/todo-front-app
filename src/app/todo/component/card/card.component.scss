@@ -1,3 +1,7 @@
+@use '@angular/material' as mat;
+.card-form-elevation{
+    @include mat.elevation(3);
+}
 .margin-a-20{
     margin: 20px;
 }
@@ -18,4 +22,15 @@
     margin-left: 10px;
     height: 20px;
     opacity: unset!important;
+}
+.card-chip-color-none {
+}
+.card-chip-color-todo {
+    background-color: #52cfcf!important;
+}
+.card-chip-color-progress {
+    background-color: #d9b8ff!important;
+}
+.card-chip-color-complete {
+    background-color: #e45cae!important;
 }

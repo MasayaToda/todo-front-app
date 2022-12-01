@@ -1,3 +1,7 @@
+@use '@angular/material' as mat;
+.card-form-elevation{
+    @include mat.elevation(3);
+}
 .margin-a-20{
     margin: 20px;
 }
