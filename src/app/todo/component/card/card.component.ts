@@ -19,15 +19,15 @@ export class TodoCardComponent {
       updatedAt: ''
   }
   @Input() status:Status[] = []
-  todoStatusColorClassList:any =[
-    "card-chip-color-todo",
-    "card-chip-color-progress",
-    "card-chip-color-complete"
-  ]
+  todoStatusColorClassList:any ={
+    1:"card-chip-color-todo",
+    2:"card-chip-color-progress",
+    3:"card-chip-color-complete"
+  }
   categoryColorClassList:any ={
-    "info":"card-chip-color-todo",
-    "warn":"card-chip-color-progress",
-    "danger":"card-chip-color-complete"
+    "info":"category-color-RED",
+    "warn":"category-color-YELLO",
+    "danger":"category-color-BLUE"
   }
   constructor(private sanitizer: DomSanitizer,protected util: Utils) {}
   getBrEscape(text:string){
@@ -43,7 +43,8 @@ export class TodoCardComponent {
   }
   getLocalTime(timeStr?:string){
     if(typeof timeStr === 'string'){
-      return new Date(timeStr).toLocaleDateString() +' '+ new Date(timeStr).toLocaleTimeString()
+      let date = new Date(timeStr)
+      return date.toLocaleDateString() +' '+ date.toLocaleTimeString()
     }else{
       return ''
     }

@@ -2,7 +2,11 @@ import { Component,Input} from '@angular/core';
 import { FormControl, FormGroup,Validators } from '@angular/forms';
 import { ActivatedRoute,Router } from '@angular/router';
 import { TodoService } from '../../../service/todo.service';
+import { StatusService } from '../../../service/status.service';
+import { CategoryService } from '../../../service/category.service';
 import { Todo } from '../../../models/todo';
+import { Status } from '../../../models/status';
+import { Category } from '../../../models/category';
 import { Message } from '../../../models/message';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
@@ -18,6 +22,8 @@ export class TodoFormComponent {
   id:number = 0;
   categories: any;
   notAddPage:boolean = false;
+  statusList:Status[] = []
+  categoryList:Category[] = []
   /**
    * コンストラクタ
    * @param route 
@@ -28,7 +34,9 @@ export class TodoFormComponent {
     private dialog: MatDialog,
     private route: ActivatedRoute,
     private router: Router,
-    private todoService: TodoService
+    private todoService: TodoService,
+    private statusService: StatusService,
+    private categoryService: CategoryService,
   ) {
     // Form初期化
     this.todoForm = new FormGroup({
@@ -42,6 +50,8 @@ export class TodoFormComponent {
    * 初期化イベント
    */
   ngOnInit(): void {
+    this.getStatusList()
+    this.getCategoryList()
     // コンポーネント呼び出し元から、登録Formか更新Formか判断する
     this.notAddPage = this.path !== "add"
     if(this.notAddPage){
@@ -50,6 +60,14 @@ export class TodoFormComponent {
         
         // データを取得
         this.getTodo(Number(params['id']))
+      });
+    }else{
+      // Form初期化(ステータスをTODO(着手前)に固定)
+      this.todoForm = new FormGroup({
+        title:    new FormControl('', Validators.required),
+        categoryId: new FormControl('', Validators.required),
+        body: new FormControl('', Validators.required),
+        state: new FormControl({value:0,disabled:true}, Validators.required),
       });
     }
   }
@@ -110,6 +128,24 @@ export class TodoFormComponent {
     },
     (error)=>{
       this.snackBar.open("サーバーとの通信に失敗しました", "OK");
+    })
+  }
+  /**
+   * ステータスリストを取得
+   * @returns ステータスリスト取得処理
+   */
+  getStatusList() {
+    return this.statusService.listStatus().subscribe((data)=>{
+      this.statusList = data
+    })
+  }
+  /**
+   * カテゴリリストを取得
+   * @returns 
+   */
+  getCategoryList() {
+    return this.categoryService.listCategory().subscribe((data)=>{
+      this.categoryList = data
     })
   }
   /**

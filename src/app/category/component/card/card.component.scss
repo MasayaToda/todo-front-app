@@ -11,6 +11,15 @@
 .category{
     margin-right: 20px;
 }
+.category-color-RED{
+    background-color: #ff8080!important;
+}
+.category-color-YELLO{
+    background-color: #ffe180!important;
+}
+.category-color-BLUE{
+    background-color: #80d5ff!important;
+}
 .card-link{
     position: absolute;
     top: 0;
@@ -21,5 +30,5 @@
 .card-chip {
     margin-left: 10px;
     height: 20px;
-    opacity: unset!important;
+    opacity: 0.9!important;
 }

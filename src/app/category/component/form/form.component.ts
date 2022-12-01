@@ -2,7 +2,9 @@ import { Component,Input} from '@angular/core';
 import { FormControl, FormGroup,Validators } from '@angular/forms';
 import { ActivatedRoute,Router } from '@angular/router';
 import { CategoryService } from '../../../service/category.service';
+import { ColorService } from '../../../service/color.service';
 import { Category } from '../../../models/category';
+import { Color } from '../../../models/color';
 import { Message } from '../../../models/message';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
@@ -18,6 +20,7 @@ export class CategoryFormComponent {
   id:number = 0;
   categories: any;
   notAddPage:boolean = false;
+  colorList:Color[] = []
   /**
    * コンストラクタ
    * @param route 
@@ -28,12 +31,16 @@ export class CategoryFormComponent {
     private dialog: MatDialog,
     private route: ActivatedRoute,
     private router: Router,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private colorService: ColorService
   ) {
     // Form初期化
     this.categoryForm = new FormGroup({
       name:    new FormControl('', Validators.required),
-      slug: new FormControl('', Validators.required),
+      slug: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[0-9a-zA-Z]+$')
+      ]),
       color: new FormControl(0, Validators.required),
     });
   }
@@ -41,6 +48,7 @@ export class CategoryFormComponent {
    * 初期化イベント
    */
   ngOnInit(): void {
+    this.getColorList()
     // コンポーネント呼び出し元から、登録Formか更新Formか判断する
     this.notAddPage = this.path !== "add"
     if(this.notAddPage){
@@ -51,6 +59,18 @@ export class CategoryFormComponent {
         this.getCategory(Number(params['id']))
       });
     }
+  }
+  /**
+   * ステータスリストを取得
+   * @returns ステータスリスト取得処理
+   */
+   getColorList() {
+    return this.colorService.listColor().subscribe((data)=>{
+      this.colorList = data
+    },
+    (error)=>{
+      this.snackBar.open("サーバーとの通信に失敗しました", "OK");
+    })
   }
   /**
    * 登録ボタンクリックイベント

@@ -17,11 +17,16 @@ export class CategoryCardComponent {
     createdAt:'',
     updatedAt:''
   }
+  categoryColorClassList:any ={
+    1:"category-color-RED",
+    2:"category-color-YELLO",
+    3:"category-color-BLUE"
+  }
   constructor(private sanitizer: DomSanitizer,protected util: Utils) {}
   getBrEscape(text:string){
     return text.replace(/\\r\\n/g, '\r\n');
   }
   getCategoryColor(code:number){
-    return ''
+    return this.categoryColorClassList[code]
   }
 }
